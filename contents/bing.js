@@ -31,7 +31,9 @@ async function removeCharLimit() {
   const serpShadowRoot = serp.shadowRoot;
   const actionBar = await waitForElement(serpShadowRoot, "cib-action-bar");
   const actionBarShadowRoot = actionBar.shadowRoot;
-  const textarea = await waitForElement(actionBarShadowRoot, "textarea[maxlength]");
+  const cibTextInput = await waitForElement(actionBarShadowRoot, "cib-text-input[serp-slot='none']");
+  const cibShadowRoot = cibTextInput.shadowRoot;
+  const textarea = await waitForElement(cibShadowRoot, "textarea[maxlength]");
   textarea.removeAttribute("maxlength");
   const letterCounter = await waitForElement(actionBarShadowRoot, ".letter-counter");
   letterCounter.childNodes[letterCounter.childNodes.length - 1].textContent = "∞";
